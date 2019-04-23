@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<!-- 依赖注入 learning start -->
+	<!-- 基于设值函数setter的依赖注入 
+    <bean id="helloWorld" class="entity.HelloWorld">
+        <property name="name" value="Da Shen"/>
+    </bean>-->
+    
+    <!-- 基于构造函数的依赖注入 -->
+    <!-- 
+    <bean id="textEditor" class="utility.TextEditor">
+    	<constructor-arg ref="spellChecker"></constructor-arg>
+    </bean>
+    
+    <bean id="spellChecker" class="utility.SpellChecker">
+    </bean>
+     -->
+     
+     <!-- 注入内部bean 
+     <bean id="textEditor" class="utility.TextEditor">
+     	<property name="spellChecker">
+     		<bean id="spellChecker" class="utility.SpellChecker"></bean>
+     	</property>			     
+     </bean>-->
+     <!-- 依赖注入 learning end -->
+     
+     <!-- AOP learing start-->
+     <!-- 基于AOP的XML架构
+     <aop:config>
+     	<aop:aspect id="log" ref="logging">
+     		<aop:pointcut expression="execution(* entity.*.*(..))" id="selectAll"/>
+     		<aop:before method="beforeAdvice" pointcut-ref="selectAll"/>
+     		<aop:after method="afterAdvice" pointcut-ref="selectAll"/>
+     		<aop:after-returning method="afterReturningAdvice" pointcut-ref="selectAll" returning="returnVal"/>
+     		<aop:after-throwing method="afterThrowingAdvice" pointcut-ref="selectAll" throwing="ex"/>
+     	</aop:aspect>
+     </aop:config>--> 
+     
+     <!-- 基于@AspectJ -->
+     <aop:aspectj-autoproxy>
+     </aop:aspectj-autoproxy>   
+     <!-- AOP learing start-->
+     
+     <bean id="student" class="entity.Student">
+     	<property name="name" value="Hape"></property>
+     	<property name="age" value="18"></property>
+     </bean>    
+     <bean id="logging" class="utility.Logging">
+     </bean>
+</beans>
